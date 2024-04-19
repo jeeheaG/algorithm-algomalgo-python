@@ -1,5 +1,6 @@
-# type : bfs
+# v1 : bfs
 # 큐를 사용한 bfs로 풀이 가능
+# https://school.programmers.co.kr/learn/courses/30/lessons/43165
 
 from collections import deque
 
