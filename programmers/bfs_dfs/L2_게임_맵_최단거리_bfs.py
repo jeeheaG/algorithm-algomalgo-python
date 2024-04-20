@@ -1,5 +1,5 @@
 # v1 : bfs
-# bfs로 풀리는 문제. dfs는 효율성 제한 걸림
+# bfs로만 풀리는 문제. dfs는 효율성 제한 걸림
 
 from collections import deque
 INF = int(2e9)
@@ -39,5 +39,6 @@ def solution(maps):
         return -1
     else : return min_time
 
+# 테스트
 print(solution([[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,1],[0,0,0,0,1]]))
 # print(solution([[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,0],[0,0,0,0,1]]))
