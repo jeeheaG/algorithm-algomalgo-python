@@ -1,4 +1,5 @@
 # v1 : 다익스트라 (그래프 - 딕셔너리 사용)
+# TS 1 : 최단거리 리스트에서 최종적으로 최대값을 구해야하므로 의미없는 값도 INF로 놔두지 말고 0으로 만들어줘야 함!
 #그래프. 1번에서 가장 먼 노드의 갯수 -> 모든 노드와의 거리를 구해야 함. 음의간선 없음 = 다익스트라
 #간선값이 모두 동일하므로 딕셔너리를 써보자!
 
@@ -12,7 +13,7 @@ def solution(n, edge):
     
     graph = defaultdict(list)
     min_dist_arr = [INF]*(n+1)
-    min_dist_arr[0] = 0
+    min_dist_arr[0] = 0 # TS 1
     min_dist_arr[1] = 0 #출발지
     
     heap = []
