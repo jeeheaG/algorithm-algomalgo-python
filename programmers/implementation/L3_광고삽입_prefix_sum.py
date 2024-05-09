@@ -18,7 +18,7 @@ def solution(play_time, adv_time, logs):
     full_sec = str_to_sec(play_time)
     adv_sec = str_to_sec(adv_time)
     
-    #누적합 구하는 부분 다시짜기
+    #누적합 구하기
     #+- 배열
     view = [0]*(full_sec+1)
     for log_str in logs :
