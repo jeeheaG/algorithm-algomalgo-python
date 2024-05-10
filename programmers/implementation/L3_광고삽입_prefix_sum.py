@@ -10,7 +10,7 @@ def sec_to_str(time_sec) :
     ss = time_sec%60
     mm = (time_sec//60)%60
     hh = time_sec//(60*60)
-    return f'{hh:02}:{mm:02}:{ss:02}'
+    return f'{hh:02}:{mm:02}:{ss:02}' # 변수값을 두자리로 출력하되 빈자리는 0으로 채워라
 
 def solution(play_time, adv_time, logs):
     
