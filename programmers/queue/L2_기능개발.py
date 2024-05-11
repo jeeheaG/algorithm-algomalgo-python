@@ -22,4 +22,4 @@ def solution(progresses, speeds):
             cur_end_cnt += 1
     answer.append(cur_end_cnt)
     
-    return answer[1:]
+    return answer[1:] # 첫 값은 의미없는 값이라 제외
