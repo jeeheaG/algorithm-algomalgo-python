@@ -4,8 +4,8 @@
 import sys
 input = sys.stdin.readline
 
-N, total = map(int, sys.stdin.readline().split())
-tree_arr = list(map(int, sys.stdin.readline().split()))
+N, total = map(int, input().split())
+tree_arr = list(map(int, input().split()))
 
 tree_arr.sort()
 
