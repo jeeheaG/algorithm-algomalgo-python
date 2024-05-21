@@ -4,7 +4,8 @@
 '''
 # TS : 채점 45.2 / 100.0 : 정답은 맞게 나오는데 시간초과 이슈 -> 시간 낭비하는 부분있는지 확인해보자
     [개선해볼 것 조사]
-    1. 모든 gate를 시작 시점에 큐에 넣어주고 시작하기
+    1. 모든 gate를 시작 시점에 큐에 넣어주고 시작하기 -> 반영, gate반복문 안에 들어있던 코드 대량 뺌
+        => 결과 똑같음. 뭔가 더 줄일 수 있나? 끝나는 시점을 다르게 한다던지..
     2. 불필요한 큐 push 줄일 것. 시간 꽤나 잡아먹음
     3. 산봉우리 등 탐색 불필요한 노드 만나면 바로 반복문 끊어낼 것
 ''' 
@@ -35,39 +36,43 @@ def solution(n, paths, gates, summits):
     #모든 봉우리에 대해, 모든 출발지에 대해 다익스트라
     for summit in summits :
         summit_min_intensity = INF
+        
+        intensity_arr = [INF]*(n+1)
+        heap = []
+
         for gate in gates :
-            intensity_arr = [INF]*(n+1)
             intensity_arr[gate] = 0 #출발지
-            
-            heap = []
             heapq.heappush(heap, (0, gate)) #(최대 intensity, 지점번호)
 
-            #인접 노드 탐색
-            while heap :
-                cur_intensity, cur_node = heapq.heappop(heap)
+        #인접 노드 탐색
+        while heap :
+            cur_intensity, cur_node = heapq.heappop(heap)
+            #현재 산봉우리 외에 다른 산봉우리면 탐색 안함
+            if cur_node in summits and cur_node != summit :
+                continue
+            
+            for next_node in range(1, n+1) :
+                #출입구이면 탐색 안함
+                if next_node in gates :
+                    continue
+                # #현재 산봉우리 외에 다른 산봉우리면 탐색 안함
+                # if next_node in summits and next_node != summit :
+                #     continue
                 
-                for next_node in range(1, n+1) :
-                    #출입구이면 탐색 안함
-                    if next_node in gates :
-                        continue
-                    #현재 산봉우리 외에 다른 산봉우리면 탐색 안함
-                    if next_node in summits and next_node != summit :
-                        continue
-                    
-                    #인접노드이면
-                    edge = graph[cur_node][next_node]
-                    if edge != INF :
-                        new_intensity = max(cur_intensity, edge)
-                        if new_intensity < intensity_arr[next_node] :
-                            # print("push : (", new_intensity, ", ", next_node, ")")
-                            intensity_arr[next_node] = new_intensity
-                            heapq.heappush(heap, (new_intensity, next_node))
-        
-            # print(intensity_arr)
-            gate_max_intensity = intensity_arr[summit] #출입구에서 봉우리까지 갈 때의 최대 intensity
-            if gate_max_intensity < summit_min_intensity :
-                summit_min_intensity = gate_max_intensity
-        
+                #인접노드이면
+                edge = graph[cur_node][next_node]
+                if edge != INF :
+                    new_intensity = max(cur_intensity, edge)
+                    if new_intensity < intensity_arr[next_node] :
+                        # print("push : (", new_intensity, ", ", next_node, ")")
+                        intensity_arr[next_node] = new_intensity
+                        heapq.heappush(heap, (new_intensity, next_node))
+    
+        # print(intensity_arr)
+        gate_max_intensity = intensity_arr[summit] #출입구에서 봉우리까지 갈 때의 최대 intensity
+        if gate_max_intensity < summit_min_intensity :
+            summit_min_intensity = gate_max_intensity
+    
         heapq.heappush(intensity_summits, (summit_min_intensity, summit))
         
     #전체 봉우리 중 최대 intensity가 제일 작은 봉우리 반환 -> 우선순위큐(heapq)에 넣어둬서 맨 첫 요소 pop
@@ -77,6 +82,8 @@ def solution(n, paths, gates, summits):
     
     return answer
 
+
+# 테스트
 # print(solution(6, [[1, 2, 3], [2, 3, 5], [2, 4, 2], [2, 5, 4], [3, 4, 4], [4, 5, 3], [4, 6, 1], [5, 6, 1]], [1, 3], [5])) #[5,3]
 
 # print(solution(7, [[1, 4, 4], [1, 6, 1], [1, 7, 3], [2, 5, 2], [3, 7, 4], [5, 6, 6]], [1], [2, 3, 4])) #[3, 4]
@@ -84,7 +91,6 @@ def solution(n, paths, gates, summits):
 
 print(solution(5, [[1, 3, 10], [1, 4, 20], [2, 3, 4], [2, 4, 6], [3, 5, 20], [4, 5, 6]], [1, 2], [5])) #[5, 6]
 
-
 end = time.time()
-dur = str(datetime.timedelta(end-start)).split('.')
+dur = str(datetime.timedelta(end-start)).split(".")
 print("duration :", dur[0])
