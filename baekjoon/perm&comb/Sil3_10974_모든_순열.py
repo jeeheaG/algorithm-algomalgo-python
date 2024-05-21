@@ -1,3 +1,5 @@
+# v1 : 순열 - itertools 라이브러리 연습
+
 from itertools import permutations
 
 N = int(input())
