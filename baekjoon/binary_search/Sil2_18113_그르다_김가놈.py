@@ -1,6 +1,6 @@
 # v1 : 이진탐색
 #이름이 왜 이런가 했더니..ㅋㅎㅋㅎ
-# TS 1 : 시간초과 -> 이 풀이는 pypy 로 돌려야 풀 수 있다고 함
+# TS 1 : 시간초과 -> 이 풀이는 pypy 로 돌려야 풀 수 있다고 함. pypy로 했더니 시간초과는 안남
 # TS 2 : 2% 에서 틀렸습니다 -> mid로 나눗셈 연산을 해야해서 mid가 0이면 안됨. left=1로 시작하고 left<=right 로 같은 경우 포함시켜주기
 # TS 3 : 80%쯤에서 틀렸습니다 -> 이진탐색 if문에서 이번값==목표값 인 경우에도 최적의 정답이 아닐 수 있으므로 바로 break로 탈출하면 안됨. 범위 조절해서 이어서 탐색해줘야 함..
 #           (아마도 김밥 남은거 버리고 꼬다리 자르고 뭐 그래서 그런듯...wow)
@@ -45,7 +45,7 @@ while left <= right :
     cur_cnt = cut(mid)
 
     # 최소조각 수min_cnt 이상이어야 함
-    if min_cnt <= cur_cnt : # TS 4 : min_cnt == cur_cnt 인 경우에도 break하면 안되고 계속 탐색해줘야 함
+    if min_cnt <= cur_cnt : # TS 3 : min_cnt == cur_cnt 인 경우에도 break하면 안되고 계속 탐색해줘야 함
         answer = mid
         left = mid + 1
     else :
