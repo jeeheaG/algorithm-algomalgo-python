@@ -58,7 +58,7 @@ for _ in range(T) :
         elif gap_abs == min_gap :
             cnt += 1
         
-        #갭의 부호에 따른 이진탐색 범위 처리
+        #갭의 부호에 따른 포인터 이동
         if gap <= 0 : 
             right -= 1 #현재 합이 k보다 큰 경우 큰 쪽 포인터를 -1 이동 (gap==0일 경우 아무 포인트 하나만 1 이동시키고 다음 탐색)
         elif 0 < gap :
