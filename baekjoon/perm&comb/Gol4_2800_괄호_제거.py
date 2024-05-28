@@ -1,5 +1,6 @@
 # v1 : 조합, 스택
 # TS : 입력조건, 출력조건 명시되어있는 것들 꼼꼼히 보고 처리해주기!!
+# TIP : 비선형 자료구조 유형에 sorted를 쓰면 정렬된 리스트로 형변환된 값 겟 가능!
 
 '''
 [문제 해석]
@@ -55,7 +56,5 @@ for i in range(1, p_cnt+1) :
         answer_set.add(answer)
         
 #사전순 출력, 중복없이
-answer_arr = list(answer_set)
-answer_arr.sort()
-for answer in answer_arr :
+for answer in sorted(answer_set) : # TIP
     print(answer)
