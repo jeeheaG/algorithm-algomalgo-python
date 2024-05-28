@@ -1,4 +1,5 @@
 # v1 : 정렬? 파이썬은 다 해주는 걸?...
+# TIP : sorted(딕셔너리.items()) 일케쓰면 딕셔너리 key값으로 사전순 정렬된 배열 겟 가능~
 
 '''
 [문제 해석]
@@ -20,11 +21,8 @@ for file in file_arr :
     name_cnt[file] += 1
 
 #확장자 목록 만들어서 사전순 정렬
-name_arr = []
-for name, cnt in name_cnt.items() :
-    name_arr.append(name)
-name_arr.sort()
+name_arr = sorted(name_cnt.items()) #TIP
 
 #출력
-for name in name_arr :
-    print(name, name_cnt[name])
+for name, cnt in name_arr :
+    print(name, cnt)
