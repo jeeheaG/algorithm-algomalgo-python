@@ -1,4 +1,4 @@
-# v1 : 해시
+# v1 : 해시 - dictionary
 #알고리즘은 별거없는데 입력이나 시간 데이터 전처리가 귀찮았
 # TS 1 : sys.stdin.readlines() 는 입력의 끝부분까지 전부 입력받아온다. 입력의 개수를 알 수 없을 때 사용!
 #           Ctrl+Z+엔터가 터미널 입력시 파일의 끝을 의미하므로 입력 끝까지 받는 테스트 시 사용할 것!
@@ -30,7 +30,7 @@ for time_str in input().split() :
 chats = sys.stdin.readlines() # TS 1
 
 #채팅으로 입퇴장 확인
-entered = {}
+entered = {} # set으로도 해보기
 success = set() # TS 2
 for chat in chats :
     time_str, name = chat.split()

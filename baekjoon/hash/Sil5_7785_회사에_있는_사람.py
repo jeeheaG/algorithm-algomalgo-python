@@ -1,11 +1,11 @@
-# v1 : 해시
+# v1 : 해시 - dictionary
 
 import sys
 input = sys.stdin.readline
 
 N = int(input())
 
-people = {}
+people = {} # set으로도 해보기
 for _ in range(N) :
     name, log = input().split()
     if log == "leave" :
