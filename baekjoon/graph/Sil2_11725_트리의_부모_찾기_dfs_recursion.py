@@ -1,6 +1,6 @@
 # v1 : dfs - recursion (71496KB, 336ms)
 # TS : dfs 재귀로 구현했는데, 채점에서 Recursion error가 떴다.
-#       파이썬에서는 1000번 이상의 재귀호출 시 Recursion 에러가 발생하도록 되어있는데, 이 값을 조정할 수 있다.
+#       백준 채점 시 파이썬에서 1000번 이상의 깊이로 재귀호출할 경우 Recursion 에러가 발생하도록 되어있는데, 이 값을 조정할 수 있다.
 #       sys.setrecursionlimit(100000) 이렇게
 #       이 방식으로 재귀 최댓값을 늘렸을 때, 재귀의 깊이가 채점 서버가 감당할 수 없는 정도로 깊어지면, Segmentation fault가 발생해 런타임 에러 이유로 SegFault를 받게된다고 한다.
 #       -> sys.setrecursionlimit(10**9) 로 늘려서 해결. 부하가 있는 것 같으니 다른 방법으로도 풀어봐야겠음
@@ -14,7 +14,7 @@
 from collections import defaultdict
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10**9) # TS : Recursion error 방지
+sys.setrecursionlimit(10**9) # TS : Recursion error 방지 - 파이썬 재귀호출 깊이 재설정
 
 N = int(input())
 edge = defaultdict(list)
