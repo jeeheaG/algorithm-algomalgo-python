@@ -39,4 +39,4 @@ dfs(1,0) #1의 부모노드는 존재하지 않으므로 무의미한 값인 0 �
 
 #출력
 # print('\n'.join(map(str, parent_arr[2:]))) #아래와 같은 동작
-sys.stdout.write('\n'.join(map(str, parent_arr[2:])))
+sys.stdout.write('\n'.join(map(str, parent_arr[2:]))) #2번째 노드부터 출력
