@@ -1,4 +1,4 @@
-# v1 : 백트래킹
+# timeout : 백트래킹(시간초과)
 # TS : 2차원 좌표는 1차원 배열에 저장할 수도 있다.
 # TIP : 리스트 인덱스도 함께 반복문 돌고 싶을 떈 enumerate(리스트)
 
@@ -37,11 +37,10 @@ def dfs(q_cnt) :
     for j in range(N) : #이번 행의 열을 돈다
         # 퀸 목록 돌며 배치 가능한지 확인
         able = True
-        for x, y in enumerate(board) :
-            #배치 안 된 행은 확인하지 않고 패스
-            if y == -1 :
-                continue
-            if i == x or j == y or abs(x-i) == abs(y-j) : #가로, 세로, 대각선 중 하나에 걸림
+        # for x, y in enumerate(board) : #시간 줄여보려고 안써봄
+        for idx in range(q_cnt) : #직전행까지만 퀸이 배치되어있을 것이므로 직전행까지만 확인하면 됨
+            x, y = idx, board[idx]
+            if j == y or abs(x-i) == abs(y-j) : #열, 대각선 중 하나에 걸림
                 able = False
         
         #이 열번호에 배치 불가. 다음 위치 탐색
@@ -51,7 +50,7 @@ def dfs(q_cnt) :
         #배치 가능
         board[q_cnt] = j
         dfs(q_cnt+1)
-        board[q_cnt] = -1
+        # board[q_cnt] = -1
 
 dfs(0)
             
