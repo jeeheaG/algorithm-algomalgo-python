@@ -26,18 +26,20 @@ for _ in range(N) :
     tree[root] = (l, r)
     
 start = 'A'
-none = '.'
 result = []
 
+#해당 노드가 존재하는지 반환해주는 메서드
+def is_exist(node) : 
+    return node != '.'
 
 # 전위 순회
 def preorder_dfs(cur) :
     global result
     left, right = tree[cur]
     result.append(cur)
-    if left != none :
+    if is_exist(left) :
         preorder_dfs(left)
-    if right != none :
+    if is_exist(right) :
         preorder_dfs(right)
 
 preorder_dfs(start)
@@ -47,10 +49,10 @@ result.append('\n')
 def inorder_dfs(cur) :
     global result
     left, right = tree[cur]
-    if left != none :
+    if is_exist(left) :
         inorder_dfs(left)
     result.append(cur)
-    if right != none :
+    if is_exist(right) :
         inorder_dfs(right)
 
 inorder_dfs(start)
@@ -60,9 +62,9 @@ result.append('\n')
 def postorder_dfs(cur) :
     global result
     left, right =tree[cur]
-    if left != none :
+    if is_exist(left) :
         postorder_dfs(left)
-    if right != none :
+    if is_exist(right) :
         postorder_dfs(right)
     result.append(cur)
 
