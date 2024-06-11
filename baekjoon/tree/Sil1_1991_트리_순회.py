@@ -61,7 +61,7 @@ result.append('\n')
 # 후위 순회
 def postorder_dfs(cur) :
     global result
-    left, right =tree[cur]
+    left, right = tree[cur]
     if is_exist(left) :
         postorder_dfs(left)
     if is_exist(right) :
