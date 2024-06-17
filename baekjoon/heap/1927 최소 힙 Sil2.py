@@ -16,7 +16,7 @@ def pop() :
     if heap :
         return heapq.heappop(heap)
     else :
-        return 0
+        return 0 # heap이 비어있을 때 heappop을 호출하면 에러가 나므로 따로 처리 해줘야 함
 
 for _ in range(int(input())) :
     oper = int(input())
