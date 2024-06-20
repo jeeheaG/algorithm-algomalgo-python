@@ -1,11 +1,12 @@
 # v1 : bfs
-# TS : 시간초과(pypy도) - 더 걸러낼 조건이 있나..?
+# TS 1 : 시간초과(pypy도) - 더 걸러낼 조건이 있나..?
 #       1. min_cnt_arr 위치 bfs밖으로 변경
 #       2. (x) 사이드 기록해놓고 그것만 돌기? 이건 사이드인지 확인하는 위치만 달라져서 어차피 비슷할 거 같음
 #       3. (x) 사이드 기록해놓고 아예 각 사이드 사이의 거리를 계산(bfs x)
 #       4. (x) 다른 분들 코드 보니까 두번째 bfs에서 bfs의 while문이 이중for문 밖에 나와있음. 어?
 #           -> 똑같은데서 시간초과 
-# TS : 코드 오류 수정으로 시간복잡도 개선(pypy통과, python 57%)
+#       5. TS 2 가 문제였음
+# TS 2 : 코드 오류 수정으로 시간복잡도 개선(pypy통과, python 57%)
 #       -> 두번째 bfs의 while문 안에서 주변노드 탐색할 때 최소이동횟수 비교하는 조건문을 잘못 적었음..,,,.. cnt+1을 그냥 cnt로 적어놔서 수정함
 
 
@@ -32,7 +33,6 @@
     - 바다가 있으면 바다를 거쳐 가장 가까운 다른 땅을 찾아야 함
     - 바다의 주변노드를 큐에 넣으며 탐색
         - 범위체크
-        - 거쳐온 바다 수를 같이 적어둠
         - 다음 노드로 가기 위해 거쳐온 바다 수가 현재까지 그 노드로 갔던 최소바다수(다리길이)보다 크거나 같으면 패스함
         - 바다가 나오면 큐에 넣고 해당 노드까지 거쳐온 최소바다수 갱신
         - 땅이 나오면 같은 땅인지 확인하고 다른 땅일 경우에만 최소다리길이 갱신
@@ -89,7 +89,7 @@ for i in range(N) :
 
 # 2. 가까운 땅 찾기
 min_cnt = INF
-min_cnt_arr = [[INF]*N for _ in range(N)] #칸 별로 최소이동횟수 기록 #TS
+min_cnt_arr = [[INF]*N for _ in range(N)] #칸 별로 최소이동횟수 기록 # TS 1 : bfs밖으로 옮김
 
 for i in range(N) :
     for j in range(N) :
@@ -99,7 +99,7 @@ for i in range(N) :
             continue
         
         que = deque()
-        que.append((i, j)) #x, y, 거쳐온 바다수
+        que.append((i, j)) #x, y
         min_cnt_arr[i][j] = 0
 
         while que :
@@ -114,7 +114,7 @@ for i in range(N) :
                 nx, ny = x+dir[0], y+dir[1]
 
                 #좌표 내이고, 최소이동횟수보다 적게 도달했다면 값을 확인
-                if 0 <= nx < N and 0 <= ny < N and cnt+1 < min_cnt_arr[nx][ny] : #TS
+                if 0 <= nx < N and 0 <= ny < N and cnt+1 < min_cnt_arr[nx][ny] : # TS 2
                     nxt = board[nx][ny]
 
                     #같은 땅
