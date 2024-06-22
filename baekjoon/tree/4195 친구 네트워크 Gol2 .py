@@ -89,7 +89,7 @@ for _ in range(int(input())) :
     cnt_arr = [] #해당 인덱스가 루트노드인 트리(친구네트워크)의 원소개수 적어두는 곳
     parent = [] #트리 부모노드 적어두는 곳
 
-    ans += sol()
+    ans += sol() # TIP : 출력 모아뒀다 한번에 하는 게 빠름
     # sol()
 
 print('\n'.join(map(str, ans)))
