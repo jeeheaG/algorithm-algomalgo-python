@@ -1,4 +1,4 @@
-# v1 : MST - prim
+# v1 : MST - prim (396ms)
 # TS : 양방향 간선 까먹지 말그라
 
 '''
