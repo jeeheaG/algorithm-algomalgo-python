@@ -1,9 +1,12 @@
 # v2 : MST - 크루스칼 알고리즘
-# TS 1 : RecursionError - sys.setrecursionlimit(10**9) 로 해결
+# TS 1 : RecursionError - sys.setrecursionlimit(10**9) 로 일단 막음
+#           (TS 2 의 코드 상 논리적인 오류때문에 재귀호출이 많이 발생한 거였음)
 # TS 2 : 메모리 초과
-#           -> union find 에서 find함수 작성 실수
-#               find 재귀호출 시 find(root[v]) 이렇게 현재 노드의 루트값을 호출해줘야 경로압축이 된다!!기억해
-#               그냥 find(v)하면 메모리 초과가 발생! 현재 함수랑 동일한 호출이라 그런듯함 (정확히 이해는 못했지만) 
+#       -> union find 에서 find함수 작성 실수
+#           find 재귀호출 시 find(root[v]) 이렇게 현재 노드의 루트값을 호출해줘야 경로압축이 된다!!기억해
+#           그냥 find(v)하면 메모리 초과가 발생! 현재 함수랑 동일한 호출이라 그런듯함 (정확히 이해는 못했지만) 
+#       -> TS 1도 이 부분 때문에 난 게 아닌가 생각이 들어서 find함수 수정 후에  sys.setrecursionlimit(10**9) 지워봤는데 잘 통과되었다. 
+#           이것때문 맞았음;;
 
 
 '''
@@ -35,7 +38,6 @@ MST 구하는 법
 # import heapq
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10**9) # TS 1
 
 V, E = map(int, input().split())
 root = [i for i in range(V+1)]
