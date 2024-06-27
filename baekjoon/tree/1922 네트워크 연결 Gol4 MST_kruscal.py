@@ -44,7 +44,7 @@ def union(v1, v2) :
 
 def find(v) :
     if root[v] != v :
-        root[v] = find(root[v])
+        root[v] = find(root[v]) #경로압축
     return root[v]
 
 for w, v1, v2 in edges :
