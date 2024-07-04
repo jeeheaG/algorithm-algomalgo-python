@@ -27,5 +27,5 @@ for num in nums :
         cnt += 1
     stack.append(num) #앞 숫자가 더 커졌거나 K를 다 지웠으면 append
 
-#K개를 다 못지웠다면 이미 앞으로 갈수록 더 큰 숫자라는 뜻이므로, 뒤쪽을 잘라냄
+#K개를 다 못지웠다면 이미 앞으로 갈수록 더 큰 숫자라는 뜻이므로, 뒤쪽을 남은 만큼 잘라냄
 print(''.join(map(str, stack[:N-K])))
