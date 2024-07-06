@@ -10,4 +10,4 @@ import math
 A, B, V = map(int, input().split())
 
 day = A-B
-print(math.ceil((V-A)/day)+1)
+print(math.ceil((V-A)/day)+1) # 올림연산은 int() 로도 가능
