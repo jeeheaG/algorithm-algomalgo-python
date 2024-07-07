@@ -6,7 +6,7 @@ coms = sys.stdin.readlines() #파일의 끝까지 입력받아서 개행문자�
 
 answer = []
 
-for com in coms :
+for com in coms : #입력 한줄씩 사용
     nums = list(map(int, com.split()))
     nums.sort()
     if nums[0]==0 and nums[1]==0 and nums[2]==0 :
