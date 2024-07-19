@@ -9,30 +9,16 @@
 - 답 : 경우의 수를 1,000,000,000으로 나눈 나머지
 - 시간제한 : 2초
 
-6 4
-0 0 0 0 < 6
-6 0 0 0 = 6
 
-1 1 1 1 < 6
-2 1 1 1 < 6
-2 2 1 1 = 6
+dp??? 이걸 dp로 어케품??
 
+아 완저니 수학이네..
+문제를 수식적으로 작게 쪼갤 수 있는지 생각해보기
 
-6 0 0 0 
-5 1 0 0 
-4 1 1 0 
-4 2 0 0 
-3 1 1 1 
-
-0 0 0 6
-0 0 1 5
-0 1 1 4
-0 0 2 4
-1 1 1 3
-
-그냥 브루트포스.. dfs 백트래킹?
-0~N다 더해보기 재귀로
-
+경우의 수를 적어놓은 dp테이블
+dp[n][k] = n을 k개의 수로 나눈 경우의 수
+dp[n][k] = dp[0][k-1] + dp[1][k-1] + ... + dp[n-1][k-1] + dp[n][k-1] 이고, 이를 한번 정리하면
+dp[n][k] = dp[n-1][k] + dp[n][k-1]
 '''
 
 import sys
@@ -40,11 +26,13 @@ input = sys.stdin.readline
 
 N, K = map(int, input().split())
 
+dp = [[0]*(K+1) for _ in range(N)]
+
+for i in range(N) :
+    dp[i][1] = 1
+
 answer = 0
 def dfs(cur, cnt) :
-    # if K < cnt or N < cur : 
-    #     return
-        
     if cnt == K and cur == N :
         global answer
         answer += 1
@@ -60,5 +48,15 @@ def dfs(cur, cnt) :
             break
         dfs(new_cur, new_cnt)
 
-dfs(0, 0)
-print(answer)
+    return answer
+
+# 이번 경우의 수를 세주는 함수
+def cal(n, k) :
+    dfs(0, 0)
+    return answer
+
+
+for i in range(N) :
+    for j in range(K+1) :
+        dp[i][j] = dp[i-1][j-1] + cal(i, j-1) # dp[i][j-1]
+
