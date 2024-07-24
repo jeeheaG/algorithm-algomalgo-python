@@ -36,9 +36,12 @@ coms = [list(map(int, input().split())) for _ in range(K)]
 ans = []
 for com in coms :
     x1, y1, x2, y2 = com
-    ans.append(dp[x2][y2] - dp[x1][y1-1] - dp[x1-1][y1] + dp[x1-1][y1-1])
+    ans.append(dp[x2][y2] - dp[x1][y1-1] - dp[x1-1][y1] + dp[x1-1][y1-1]) # 답 : 부분합 계산
 
 print('\n'.join(map(str, ans)))
+
+
+
 
 # dp테이블 -TS : 0없이 board에 그대로 짰는데 뭔가 범위 계산이 잘못된 듯..0넣고 다시짤래
 # for i in range(N) :
