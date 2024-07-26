@@ -8,7 +8,7 @@ N = int(input())
 people = []
 for i in range(N) :
     age, name = input().split()
-    people.append((int(age), i, name))
+    people.append((int(age), i, name)) # 나이순 적용 후 입력순 적용
 
 people.sort()
 
