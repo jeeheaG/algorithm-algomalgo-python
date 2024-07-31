@@ -58,4 +58,4 @@ while que :
             visited[nx][ny] = True
             que.append((nx, ny, t+1))
 
-print("Fail" if time == INF else time)
+print("Fail" if time == INF else time) #time 이 갱신된 적 없으면 실패
