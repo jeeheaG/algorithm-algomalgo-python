@@ -27,7 +27,7 @@ for line in board :
         if v == 1 :
             cheeze_cnt += 1
 
-print(cheeze_cnt)
+# print(cheeze_cnt)
 
 dir_arr = [(1,0), (0,1), (-1,0), (0,-1)]
 que = deque()
