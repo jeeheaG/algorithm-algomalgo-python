@@ -58,7 +58,7 @@ while cheeze_cnt :
                     melt.append((nx, ny))
 
     # 치즈 녹이기
-    last_cheeze_cnt = cheeze_cnt
+    last_cheeze_cnt = cheeze_cnt # 직전에 녹인 치즈 수를 저장해두고 마지막에 답 출력에 사용
     cheeze_cnt -= len(melt)
 
     for i, j in melt :
