@@ -32,7 +32,7 @@ H, W, X, Y = map(int, input().split())
 
 board = [list(map(int, input().split())) for _ in range(H+X)]
 
-real = [[0]*W for _ in range(H)]
+real = [[0]*W for _ in range(H)] # 실제 배열을 담을 list
 
 for i in range(H) :
     for j in range(W) :
