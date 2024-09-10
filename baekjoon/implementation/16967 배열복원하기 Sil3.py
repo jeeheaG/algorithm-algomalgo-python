@@ -43,5 +43,7 @@ for i in range(H) :
         # 겹치는 구간은 (i,j) - (i-X, j-Y) 원래값 계산 해서 넣어줘야 함
         real[i][j] = board[i][j] - real[i-X][j-Y]
 
+
+# 출력
 for line in real :
     print(*line)
