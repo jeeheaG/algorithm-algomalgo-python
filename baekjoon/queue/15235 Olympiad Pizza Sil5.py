@@ -34,9 +34,9 @@ while que :
     time += 1
 
     if need == 1 :
-        ans[idx] = time
+        ans[idx] = time # 피자 다 받은 사람의 시간 기록
         continue
 
-    que.append((idx, need-1))
+    que.append((idx, need-1)) # 원하는 피자 차감
 
 print(*ans)
