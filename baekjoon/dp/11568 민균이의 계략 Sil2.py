@@ -27,7 +27,7 @@ input = sys.stdin.readline
 N = int(input())
 nums = list(map(int, input().split()))
 
-dp = [1] * N
+dp = [1] * N #현재 위치의 숫자가 배열의 마지막일때, 순증가 배열의 크기를 기록할 dp테이블
 
 for i in range(N) : # 숫자 전체를 돌면서
     for j in range(i) : # 자기 이전 숫자들을 체크
