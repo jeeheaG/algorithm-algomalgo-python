@@ -48,13 +48,79 @@ BFS
 
 '''
 
+from collections import deque, defaultdict
 import sys
+sys.setrecursionlimit(10**9)
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
 S, E = map(int, input().split()) # 출발, 도착 노드
 
+edges = [tuple(map(int, input().split())) for _ in range(M)]
+
+edges.sort(key = lambda x : x[2], reverse=True) # 원소의 세번째 값을 기준으로, 거꾸로 정렬하라
 
 
+## union find
+# x, y 트리 합치기
+def union(x, y) :
+    if x==y :
+        return
+    parent[find(x)] = find(y) # 루트끼리 합칠 것!!!
 
-def union() :
+# rank = [1]*(N+1)
+# def union_by_rank(x, y) :
+#     if x==y :
+#         return
+    
+#     if rank[x] < rank[y] :
+#         union(x, y)
+#         rank[y] = rank
+
+
+# x 의 루트 찾기(재귀)
+def find(x) :
+    if parent[x] != x :
+        parent[x] = find(parent[x])
+    return parent[x]
+
+
+## MST 만들기 - 크루스칼
+
+parent = [i for i in range(N+1)] # 각 노드의 루트노드 기록
+new_edges = []
+for edge in edges :
+    if len(new_edges) >= N-1 :
+        break
+
+    n1, n2, w = edge
+    if find(n1) != find(n2) : # 루트노드가 다르면 = 트리가 다르면 = 사이클이 안생기면
+        union(n1, n2)
+        new_edges.append((edge))
+
+# print(new_edges)
+
+## 이제 bfs 로 출발-도착 경로찾기
+
+edge_dict = defaultdict(list)
+for n1, n2, w in new_edges :
+    edge_dict[n1].append((n2, w))
+    edge_dict[n2].append((n1, w))
+
+que = deque()
+que.append((S, 0, int(2e9))) # 시작노드 넣어주기 (다음노드, 가중치, 최소가중치)
+
+ans = 0
+while que :
+    n, w, min_w = que.popleft()
+
+    if n == E :
+        ans = min_w
+        break
+
+    for n, w in edge_dict[n] :
+        que.append((n, w, min(min_w, w)))
+
+print(ans)
+
+
