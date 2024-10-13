@@ -50,12 +50,12 @@ for _ in range(T) :
 
         if depth == N :
             str_li = "".join(li)
-            if eval(str_li.replace(" ", "")) == 0 :
+            if eval(str_li.replace(" ", "")) == 0 : # eval() : 수식을 문자열로 넣으면 계산해줌
                 ans_T.append(str_li)
             continue
 
         depth = depth+1
-        opers = ["+", "-", " "]
+        opers = ["+", "-", " "] # 모든 경우의 수 세가지를 넣어줌
         for oper in opers :
             new_li = li.copy()
             new_li.append(oper)
