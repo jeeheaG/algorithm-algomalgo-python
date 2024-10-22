@@ -25,7 +25,7 @@ people = list(map(int, input().split()))
 
 que = deque()
 for i in range(N) :
-    que.append((i, people[i]))
+    que.append((i, people[i])) # 사람 다 넣어놓고 시작
 
 ans = [0]*N
 time = 0
