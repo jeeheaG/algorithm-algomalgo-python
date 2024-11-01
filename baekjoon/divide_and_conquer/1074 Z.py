@@ -25,6 +25,7 @@ r = 2, c = 1 -> r > 2, c < 2 -> 3사분면 -> +line^2
 -> 제일 큰 사각형부터 사분할 하면서 누적값 더함, 좌표이동, 다음 단계 작은 사각형 탐색
 '''
 
+
 N, r, c = map(int, input().split())
 
 def recur(S, r, c, add_sum) :
@@ -32,8 +33,8 @@ def recur(S, r, c, add_sum) :
         return add_sum
     
     add = 0
-    line = S//2
-    square = line**2
+    line = S//2 # 사분할 기준선 값
+    square = line**2 # 통으로 더해줄 값단위
     
     if line <= r :
         add += square*2
@@ -42,6 +43,6 @@ def recur(S, r, c, add_sum) :
         add += square
         c -= line
 
-    return recur(line, r, c, add_sum+add)
+    return recur(line, r, c, add_sum+add) # 그다음 작은 사분할 진행
 
 print(recur(2**N, r, c, 0))
